@@ -32,7 +32,7 @@ intellij {
             'java-i18n',
             'properties'
     ]
-    pluginName 'Laravel Plugin'
+    pluginName 'tw tools'
 }
 
 patchPluginXml {
