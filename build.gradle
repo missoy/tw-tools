@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
+        }
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.4.4"
+}
+
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+intellij {
+    version ideaVersion
+    updateSinceUntilBuild false
+    plugins = [
+            "com.jetbrains.php:${phpPluginVersion}",
+            "com.jetbrains.php.blade:${bladePluginVersion}",
+            'CSS',
+            'java-i18n',
+            'properties'
+    ]
+    pluginName 'Laravel Plugin'
+}
+
+patchPluginXml {
+    sinceBuild '173'
+}
+
+group 'com.baiguiren'
+
+version '0.1'
+
+wrapper {
+    gradleVersion '5.4.1'
+}
