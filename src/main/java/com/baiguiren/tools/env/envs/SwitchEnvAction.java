@@ -2,11 +2,11 @@ package com.baiguiren.tools.env.envs;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
-import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class SwitchEnvAction {
@@ -69,11 +69,11 @@ public class SwitchEnvAction {
             reader = new BufferedReader(new FileReader(envPath()));
             String line = reader.readLine();
             while (line != null) {
-                line = reader.readLine();
                 if (line.contains("DB_HOST") && !line.contains("MONGO")) {
                     line = line.replaceAll("rm-wz9obs5n6o606f5h7rw\\.mysql\\.rds\\.aliyuncs\\.com", "rm-wz9obs5n6o606f5h7ao.mysql.rds.aliyuncs.com");
                 }
-                content.append(line);
+                content.append(line + "\n");
+                line = reader.readLine();
             }
             reader.close();
 
@@ -85,8 +85,7 @@ public class SwitchEnvAction {
 
     private static void replaceHost() {
         try {
-            File file = new File(envPath());
-            String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            String content = readFile(envPath());
             content = content.replaceAll("127\\.0\\.0\\.1", resolveDomain());
             filePutContents(toPath(), content);
         } catch (IOException e) {
@@ -125,5 +124,10 @@ public class SwitchEnvAction {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String readFile(String path) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, StandardCharsets.UTF_8);
     }
 }
