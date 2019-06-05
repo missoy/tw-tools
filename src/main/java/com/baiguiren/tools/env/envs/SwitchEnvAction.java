@@ -2,6 +2,8 @@ package com.baiguiren.tools.env.envs;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.vfs.VfsUtil;
+import com.intellij.openapi.vfs.VirtualFile;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -41,60 +43,52 @@ public class SwitchEnvAction {
     public static void switchToEnv(String env) throws IOException {
         init(env);
 
-        Project project = ProjectManager.getInstance().getOpenProjects()[0];
-        String basePath = project.getBasePath();
+        File from = new File(fromPath());
+        File to = new File(toPath());
 
-        File from = new File(basePath + "/" + resolveEnv());
-        File to = new File(basePath + "/.env");
-        System.out.println(from.toPath());
-        System.out.println(to.toPath());
-
-        try {
-            Files.delete(to.toPath());
-        } catch (IOException e) {
-//            e.printStackTrace();
-        }
+        if (to.exists()) to.delete();
         Files.copy(from.toPath(), to.toPath());
 
         replaceHost();
-        if (env.equals("demo")) {
-            replaceDemoHost();
+
+        // 重新从硬盘加载
+        VirtualFile virtualFile = VfsUtil.findFileByIoFile(to, true);
+        if (virtualFile != null) {
+            virtualFile.refresh(true, false);
         }
     }
 
-    private static void replaceDemoHost() {
-        BufferedReader reader;
-        try {
-            StringBuilder content = new StringBuilder();
-            reader = new BufferedReader(new FileReader(envPath()));
-            String line = reader.readLine();
-            while (line != null) {
-                if (line.contains("DB_HOST") && !line.contains("MONGO")) {
-                    line = line.replaceAll("rm-wz9obs5n6o606f5h7rw\\.mysql\\.rds\\.aliyuncs\\.com", "rm-wz9obs5n6o606f5h7ao.mysql.rds.aliyuncs.com");
-                }
-                content.append(line + "\n");
-                line = reader.readLine();
-            }
-            reader.close();
+    private static String replaceDemoHost(String content) {
+        StringBuilder sb = new StringBuilder();
+        String[] lines = content.split("\n");
 
-            filePutContents(toPath(), content.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String line: lines) {
+            if (line.contains("DB_HOST") && !line.contains("MONGO")) {
+                line = line.replaceAll("rm-wz9obs5n6o606f5h7rw\\.mysql\\.rds\\.aliyuncs\\.com", "rm-wz9obs5n6o606f5h7ao.mysql.rds.aliyuncs.com");
+            }
+            sb.append(line + "\n");
         }
+
+        return sb.toString();
     }
 
     private static void replaceHost() {
         try {
-            String content = readFile(envPath());
-            content = content.replaceAll("127\\.0\\.0\\.1", resolveDomain());
+            String content = readFile(fromPath());
+            content = content.replaceAll("127\\.0\\.0\\.1", domains.get(env));
+
+            if (env.equals("demo")) {
+                content = replaceDemoHost(content);
+            }
+
             filePutContents(toPath(), content);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static String envPath() {
-        return basePath() + "/" + resolveEnv();
+    private static String fromPath() {
+        return basePath() + "/" + files.get(env);
     }
 
     private static String toPath() {
@@ -105,14 +99,6 @@ public class SwitchEnvAction {
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
 
         return project.getBasePath();
-    }
-
-    private static String resolveEnv() {
-        return files.get(env);
-    }
-
-    private static String resolveDomain() {
-        return domains.get(env);
     }
 
     private static void filePutContents(String filename, String data) {

@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>0.1.1</version>
+    <version>1.1</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -32,7 +32,7 @@
     </project-components>
 
     <actions>
-        <group id="com.baiguiren.tools.env.envs" text="switch env" popup="true">
+        <group id="com.baiguiren.tools.env.envs" text="Switch Env" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <action class="com.baiguiren.tools.env.envs.Qa1" id="qa1" text="qa1" description="switch env to qa1"/>
             <action class="com.baiguiren.tools.env.envs.Qa2" id="qa2" text="qa2" description="switch env to qa2"/>
