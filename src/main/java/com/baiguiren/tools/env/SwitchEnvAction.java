@@ -1,4 +1,4 @@
-package com.baiguiren.tools.env.envs;
+package com.baiguiren.tools.env;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;

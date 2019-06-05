@@ -20,6 +20,7 @@
     <!-- uncomment to enable plugin in all products
     -->
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.vcs</depends>
 
     <application-components>
         <!-- Add your application components here -->
@@ -32,12 +33,22 @@
     </project-components>
 
     <actions>
-        <group id="com.baiguiren.tools.env.envs" text="Switch Env" popup="true">
+        <group id="Switch Branch" text="Switch Branch" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.env.envs.Qa1" id="qa1" text="qa1" description="switch env to qa1"/>
-            <action class="com.baiguiren.tools.env.envs.Qa2" id="qa2" text="qa2" description="switch env to qa2"/>
-            <action class="com.baiguiren.tools.env.envs.Qa3" id="qa3" text="qa3" description="switch env to qa3"/>
-            <action class="com.baiguiren.tools.env.envs.Demo" id="demo" text="demo" description="switch env to demo"/>
+            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa1" description="switch branch to qa1"/>
+            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa2" description="switch branch to qa2"/>
+            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="switch branch to qa3"/>
+            <action class="com.baiguiren.tools.branch.V114" id="branch_v114" text="v114" description="switch branch to v114"/>
+            <action class="com.baiguiren.tools.branch.V115" id="branch_v115" text="v115" description="switch branch to v115"/>
+            <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="switch branch to release"/>
+            <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="switch branch to master"/>
+        </group>
+        <group id="Switch Env" text="Switch Env" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <action class="com.baiguiren.tools.env.Qa1" id="qa1" text="qa1" description="switch env to qa1"/>
+            <action class="com.baiguiren.tools.env.Qa2" id="qa2" text="qa2" description="switch env to qa2"/>
+            <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="switch env to qa3"/>
+            <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="switch env to demo"/>
         </group>
     </actions>
 
