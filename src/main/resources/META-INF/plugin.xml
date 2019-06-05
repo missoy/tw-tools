@@ -32,6 +32,11 @@
     <project-components>
     </project-components>
 
+    <!-- Git integration -->
+    <extensions defaultExtensionNs="com.intellij">
+        <vcs name="git" vcsClass="com.baiguiren.tools.branch.GitVcs"/>
+    </extensions>
+
     <actions>
         <group id="Switch Branch" text="Switch Branch" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
