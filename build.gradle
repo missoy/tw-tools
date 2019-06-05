@@ -30,7 +30,8 @@ intellij {
             "com.jetbrains.php.blade:${bladePluginVersion}",
             'CSS',
             'java-i18n',
-            'properties'
+            'properties',
+            'git4idea'
     ]
     pluginName 'tw tools'
 }

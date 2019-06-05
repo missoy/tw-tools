@@ -19,6 +19,9 @@ public class SwitchBranch {
         Repository repository = (Repository) repositories.iterator().next();
         System.out.println(repository.getCurrentBranchName());
         System.out.println(repository.getRoot());
+        System.out.println(repository.getVcs());
+        System.out.println(repository.getVcs().getCheckoutProvider());
+        System.out.println(repository.getVcs().getCheckoutProvider().getVcsName());
 //        repository.getVcs().getCheckoutProvider().doCheckout(project, );
     }
 }
