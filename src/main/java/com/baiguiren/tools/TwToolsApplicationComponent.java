@@ -30,7 +30,6 @@ public class TwToolsApplicationComponent implements ApplicationComponent, BulkFi
 
     @Override
     public void before(@NotNull List<? extends VFileEvent> events) {
-
     }
 
     @Override

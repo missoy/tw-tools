@@ -10,7 +10,7 @@ public class Qa1 extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         try {
-            SwitchEnvAction.switchToEnv("qa1");
+            SwitchEnv.switchToEnv("qa1");
         } catch (IOException e1) {
             e1.printStackTrace();
         }

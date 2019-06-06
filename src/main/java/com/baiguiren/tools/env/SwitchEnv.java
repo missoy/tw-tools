@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-public class SwitchEnvAction {
+public class SwitchEnv {
 
     private static String env;
 
@@ -20,7 +20,7 @@ public class SwitchEnvAction {
     private static HashMap<String, String> files = new HashMap<>();
 
     private static void init(String env) {
-        SwitchEnvAction.env = env;
+        SwitchEnv.env = env;
 
         putDomains();
         putFiles();

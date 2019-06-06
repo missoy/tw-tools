@@ -10,7 +10,7 @@ public class Demo extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         try {
-            SwitchEnvAction.switchToEnv("demo");
+            SwitchEnv.switchToEnv("demo");
         } catch (IOException e1) {
             e1.printStackTrace();
         }

@@ -1,14 +1,25 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
-    tw-tools
+    <h1>tw-tools</h1>
+    <br/>
+
+    <h2>功能</h2>
+    <ul>
+        <li>切换 env</li>
+        <li>切换所有模块分支到某一个分支</li>
+    </ul>
     ]]></description>
 
     <change-notes><![CDATA[
+    <ul>
+        <li>添加切换所有模块的分支到某一分支的菜单</li>
+        <li>添加切换 env 的菜单</li>
+    </ul>
     ]]>
     </change-notes>
 
@@ -20,7 +31,7 @@
     <!-- uncomment to enable plugin in all products
     -->
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.vcs</depends>
+    <depends>Git4Idea</depends>
 
     <application-components>
         <!-- Add your application components here -->
@@ -31,11 +42,6 @@
 
     <project-components>
     </project-components>
-
-    <!-- Git integration -->
-    <extensions defaultExtensionNs="com.intellij">
-        <vcs name="git" vcsClass="com.baiguiren.tools.branch.GitVcs"/>
-    </extensions>
 
     <actions>
         <group id="Switch Branch" text="Switch Branch" popup="true">
