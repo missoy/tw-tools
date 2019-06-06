@@ -10,4 +10,4 @@
 #### 截图
 
 ![switch_env](https://github.com/eleven26/tw-tools/blob/master/screenshots/switch_env.png)
-![switch_branch](https://github.com/eleven26/tw-tools/blob/master/screenshots/switch_branch.png.png)
+![switch_branch](https://github.com/eleven26/tw-tools/blob/master/screenshots/switch_branch.png)
