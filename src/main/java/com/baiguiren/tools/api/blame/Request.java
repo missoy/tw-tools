@@ -1,42 +1,44 @@
 package com.baiguiren.tools.api.blame;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Request {
-    private static final String USER_AGENT = "Mozilla/5.0";
-
-    public static void send(String uri, String method) {
+class Request {
+    static String send(String uri, String method) throws Exception {
         String url = "http://127.0.0.1:8005";
-        try {
-            sendPost(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        HashMap<String, String> params = new HashMap<>();
+        params.put("url", uri);
+        params.put("method", method.toUpperCase());
+
+        return sendPost(url, params);
     }
 
     // HTTP POST request
-    private static void sendPost(String url) throws Exception {
+    private static String sendPost(String url, HashMap<String, String> params) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         //add request header
         con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
         // Send post request
         con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.flush();
-        wr.close();
 
-        int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
+        // 获取URLConnection对象对应的输出流
+        PrintWriter out = new PrintWriter(con.getOutputStream());
+        // 发送请求参数
+        out.print(urlEncodeUTF8(params));
+        // flush输出流的缓冲
+        out.flush();
+
+//        int responseCode = con.getResponseCode();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -47,7 +49,24 @@ public class Request {
         }
         in.close();
 
-        //print result
-        System.out.println(response.toString());
+        return response.toString();
+    }
+
+    private static String urlEncodeUTF8(String s) throws UnsupportedEncodingException {
+        return URLEncoder.encode(s, "UTF-8");
+    }
+
+    private static String urlEncodeUTF8(Map<?, ?> map) throws UnsupportedEncodingException {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<?,?> entry : map.entrySet()) {
+            if (sb.length() > 0) {
+                sb.append("&");
+            }
+            sb.append(String.format("%s=%s",
+                    urlEncodeUTF8(entry.getKey().toString()),
+                    urlEncodeUTF8(entry.getValue().toString())
+            ));
+        }
+        return sb.toString();
     }
 }
