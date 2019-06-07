@@ -15,6 +15,11 @@ plugins {
     id "org.jetbrains.intellij" version "0.4.4"
 }
 
+dependencies {
+    // 是我输了，这里被 intellij 重定向了，重定向之后 404 了，导致无法引入，先手动引入吧
+//    implementation 'com.alibaba:fastjson:1.2.58'
+}
+
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 apply plugin: 'java'

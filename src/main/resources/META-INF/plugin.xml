@@ -31,6 +31,7 @@
     <!-- uncomment to enable plugin in all products
     -->
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.jetbrains.php</depends>
     <depends>Git4Idea</depends>
 
     <application-components>
@@ -60,6 +61,14 @@
             <action class="com.baiguiren.tools.env.Qa2" id="qa2" text="qa2" description="switch env to qa2"/>
             <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="switch env to qa3"/>
             <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="switch env to demo"/>
+        </group>
+        <group id="Api Blame" text="Api Blame" description="Api blame" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action class="com.baiguiren.tools.api.blame.Get" id="api.blame.get" text="GET" description="Open docs url in browser (GET method)"/>
+            <action class="com.baiguiren.tools.api.blame.Post" id="api.blame.post" text="POST" description="Open docs url in browser (POST method)"/>
+            <action class="com.baiguiren.tools.api.blame.Put" id="api.blame.put" text="PUT" description="Open docs url in browser (PUT method)"/>
+            <action class="com.baiguiren.tools.api.blame.Patch" id="api.blame.patch" text="PATCH" description="Open docs url in browser (PATCH method)"/>
+            <action class="com.baiguiren.tools.api.blame.Delete" id="api.blame.delete" text="DELETE" description="Open docs url in browser (DELETE method)"/>
         </group>
     </actions>
 
