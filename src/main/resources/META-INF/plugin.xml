@@ -35,10 +35,6 @@
     <depends>Git4Idea</depends>
 
     <application-components>
-        <!-- Add your application components here -->
-        <component>
-            <implementation-class>com.baiguiren.tools.TwToolsApplicationComponent</implementation-class>
-        </component>
     </application-components>
 
     <project-components>
