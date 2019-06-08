@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.2</version>
+    <version>1.3</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -12,6 +12,7 @@
     <ul>
         <li>切换 env</li>
         <li>切换所有模块分支到某一个分支</li>
+        <li>选中接口 uri 地址，右键点击跳转到文档页面</li>
     </ul>
     ]]></description>
 
@@ -19,6 +20,7 @@
     <ul>
         <li>添加切换所有模块的分支到某一分支的菜单</li>
         <li>添加切换 env 的菜单</li>
+        <li>添加选中 uri 地址跳转到文档页的功能</li>
     </ul>
     ]]>
     </change-notes>

@@ -21,6 +21,7 @@ class ApiBlame {
             String response = null;
             try {
                 response = Request.send(uri, method);
+                System.out.println(response);
             } catch (Exception e1) {
                 // 网络异常
                 Notification notification = new Notification("Api Blame", "Api blame network error", "网络错误", NotificationType.ERROR);

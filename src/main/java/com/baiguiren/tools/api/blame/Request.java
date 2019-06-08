@@ -12,7 +12,7 @@ import java.util.Map;
 
 class Request {
     static String send(String uri, String method) throws Exception {
-        String url = "http://127.0.0.1:8005";
+        String url = "http://api-blame.baiguiren.com";
         HashMap<String, String> params = new HashMap<>();
         params.put("url", uri);
         params.put("method", method.toUpperCase());
