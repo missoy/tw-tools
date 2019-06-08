@@ -35,16 +35,12 @@ public class Api {
         return rawDocs;
     }
 
-    public Api(String response) {
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            this.cls = jsonObject.getString("class");
-            this.developer = jsonObject.getString("developer");
-            this.docsUrl = jsonObject.getString("docs_url");
-            this.reference = jsonObject.getString("reference");
-            this.rawDocs = jsonObject.getString("raw_docs");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public Api(String response) throws JSONException {
+        JSONObject jsonObject = new JSONObject(response);
+        this.cls = jsonObject.getString("class");
+        this.developer = jsonObject.getString("developer");
+        this.docsUrl = jsonObject.getString("docs_url");
+        this.reference = jsonObject.getString("reference");
+        this.rawDocs = jsonObject.getString("raw_docs");
     }
 }
