@@ -51,7 +51,7 @@
             <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="switch branch to qa3"/>
             <action class="com.baiguiren.tools.branch.V114" id="branch_v114" text="v114" description="switch branch to v114"/>
             <action class="com.baiguiren.tools.branch.V115" id="branch_v115" text="v115" description="switch branch to v115"/>
-            <action class="com.baiguiren.tools.branch.V120" id="branch_v120" text="v115" description="switch branch to v120"/>
+            <action class="com.baiguiren.tools.branch.V120" id="branch_v120" text="v120" description="switch branch to v120"/>
             <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="switch branch to release"/>
             <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="switch branch to master"/>
         </group>
