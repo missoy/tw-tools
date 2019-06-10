@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -34,7 +34,6 @@
     <!-- uncomment to enable plugin in all products
     -->
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.jetbrains.php</depends>
     <depends>Git4Idea</depends>
 
     <application-components>

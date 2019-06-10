@@ -31,8 +31,8 @@ intellij {
     version ideaVersion
     updateSinceUntilBuild false
     plugins = [
-            "com.jetbrains.php:${phpPluginVersion}",
-            "com.jetbrains.php.blade:${bladePluginVersion}",
+//            "com.jetbrains.php:${phpPluginVersion}",
+//            "com.jetbrains.php.blade:${bladePluginVersion}",
             'CSS',
             'java-i18n',
             'properties',
@@ -47,7 +47,7 @@ patchPluginXml {
 
 group 'com.baiguiren'
 
-version '1.3.1'
+version '1.3.2'
 
 wrapper {
     gradleVersion '5.4.1'
