@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -10,9 +10,10 @@
 
     <h2>功能</h2>
     <ul>
-        <li>切换 env</li>
-        <li>切换所有模块分支到某一个分支</li>
+        <li>切换 env (Tools -> "Switch Env")</li>
+        <li>切换所有模块分支到某一个分支 (Tools -> "Switch Branch")</li>
         <li>选中接口 uri 地址，右键点击跳转到文档页面</li>
+        <li>stash 所有模块, stash pop 所有模块 (Tools -> "Stash Helper")</li>
     </ul>
     ]]></description>
 
@@ -23,6 +24,8 @@
         <li>添加选中 uri 地址跳转到文档页的功能</li>
         <li>修复 api-blame 请求地址</li>
         <li>添加 120 分支切换支持</li>
+        <li>添加 stash 所有模块、stash pop 所有模块的功能</li>
+        <li>fix 切换 env 之后文件状态立即从磁盘获取最新内容</li>
     </ul>
     ]]>
     </change-notes>
@@ -44,6 +47,11 @@
     </project-components>
 
     <actions>
+        <group id="Stash Helper" text="Stash helper" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <action class="com.baiguiren.tools.stash.Stash" id="stash all" text="Stash All" description="stash all repos"/>
+            <action class="com.baiguiren.tools.stash.StashPop" id="stash pop all" text="Stash Pop All" description="stash pop all repos"/>
+        </group>
         <group id="Switch Branch" text="Switch Branch" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
             <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa1" description="switch branch to qa1"/>

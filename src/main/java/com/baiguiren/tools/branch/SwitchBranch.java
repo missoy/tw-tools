@@ -2,6 +2,8 @@ package com.baiguiren.tools.branch;
 
 import com.intellij.dvcs.repo.Repository;
 import com.intellij.dvcs.repo.VcsRepositoryManager;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 
@@ -24,5 +26,8 @@ public class SwitchBranch {
 
         GitBrancher gitBrancher = GitBrancher.getInstance(project);
         gitBrancher.checkout(to, false, gitRepositories, () -> System.out.println("Finish checkout."));
+
+        Notification notification = new Notification("tw tools", "Switch Branch", "Successful switch to " + to + ".", NotificationType.INFORMATION);
+        notification.notify(project);
     }
 }

@@ -1,9 +1,17 @@
 package com.baiguiren.tools.env;
 
+import com.intellij.ide.SaveAndSyncHandlerImpl;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.project.ex.ProjectManagerEx;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -40,7 +48,12 @@ public class SwitchEnv {
         files.put("demo", ".env.release");
     }
 
-    public static void switchToEnv(String env) throws IOException {
+    public static void switchToEnv(AnActionEvent e, String env) throws IOException {
+        Project project = e.getData(CommonDataKeys.PROJECT);
+        project.save();
+        FileDocumentManager.getInstance().saveAllDocuments();
+        ProjectManagerEx.getInstanceEx().blockReloadingProjectOnExternalChanges();
+
         init(env);
 
         File from = new File(fromPath());
@@ -56,6 +69,13 @@ public class SwitchEnv {
         if (virtualFile != null) {
             virtualFile.refresh(true, false);
         }
+
+        SaveAndSyncHandlerImpl.getInstance().refreshOpenFiles();
+        VirtualFileManager.getInstance().refreshWithoutFileWatcher(false);
+        ProjectManagerEx.getInstanceEx().unblockReloadingProjectOnExternalChanges();
+
+        Notification notification = new Notification("tw tools", "Switch Env", "Successful switch to " + env + ".'", NotificationType.INFORMATION);
+        notification.notify(e.getData(CommonDataKeys.PROJECT));
     }
 
     private static String replaceDemoHost(String content) {
