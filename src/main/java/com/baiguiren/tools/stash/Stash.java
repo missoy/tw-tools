@@ -9,6 +9,9 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.progress.Task;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ex.ProjectManagerEx;
 import com.intellij.openapi.vfs.VirtualFileManager;
@@ -29,13 +32,21 @@ public class Stash extends AnAction {
         FileDocumentManager.getInstance().saveAllDocuments();
         ProjectManagerEx.getInstanceEx().blockReloadingProjectOnExternalChanges();
 
-        repositories
-                .stream()
-                .map(obj -> (GitRepository) obj)
-                .forEach(gitRepository -> {
-                    GitCommandResult result = Git.getInstance().stashSave(gitRepository, "");
-                    System.out.println(result.getOutput());
-                });
+        ProgressManager.getInstance().run(new Task.Modal(project, "Stash All", false) {
+            @Override
+            public void run(@NotNull ProgressIndicator indicator) {
+                indicator.setText("Stash all");
+                indicator.setIndeterminate(true);
+
+                repositories
+                        .stream()
+                        .map(obj -> (GitRepository) obj)
+                        .forEach(gitRepository -> {
+                            GitCommandResult result = Git.getInstance().stashSave(gitRepository, "");
+                            System.out.println(result.getOutput());
+                        });
+            }
+        });
 
         Notification notification = new Notification("tw tools", "Stash Helper", "Successful stashed.", NotificationType.INFORMATION);
         notification.notify(e.getData(CommonDataKeys.PROJECT));
