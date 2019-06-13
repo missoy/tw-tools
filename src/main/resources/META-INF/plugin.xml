@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.3.5</version>
+    <version>1.3.6</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -27,6 +27,7 @@
         <li>添加 stash 所有模块、stash pop 所有模块的功能</li>
         <li>fix 切换 env 之后文件状态立即从磁盘获取最新内容</li>
         <li>进行 Stash All 和 Stash Pop All 操作的时候显示 modal loading 框</li>
+        <li>进行 Switch Branch 操作的时候，在本地没有那个分支的时候先创建对应分支</li>
     </ul>
     ]]>
     </change-notes>
