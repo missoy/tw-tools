@@ -29,7 +29,7 @@ public class SwitchBranch {
         // 本地没有那个分支的时候创建, 同时需要远程分支也存在(否则会报错)
         List<GitRepository> forCheckoutRepositories = new ArrayList<>();
         for (GitRepository gitRepository : gitRepositories) {
-            if (gitRepository.getBranches().findLocalBranch("refs/heads/" + to) == null) {
+            if (gitRepository.getBranches().findLocalBranch(to) == null) {
                 if (gitRepository.getBranches().getRemoteBranches().stream().anyMatch(gitRemoteBranch -> gitRemoteBranch.toString().equals("refs/remotes/origin/" + to))) {
                     forCheckoutRepositories.add(gitRepository);
                 }
