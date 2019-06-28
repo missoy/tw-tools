@@ -1,11 +1,11 @@
 package com.baiguiren.tools.branch;
 
+import com.baiguiren.tools.utils.ProjectUtil;
 import com.intellij.dvcs.repo.Repository;
 import com.intellij.dvcs.repo.VcsRepositoryManager;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
 
 import git4idea.branch.GitBrancher;
 import git4idea.repo.GitRepository;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class SwitchBranch {
     public static void switchTo(String to) {
-        Project project = ProjectManager.getInstance().getOpenProjects()[0];
+        Project project = ProjectUtil.getActiveProject();
         GitBrancher gitBrancher = GitBrancher.getInstance(project);
         Collection<Repository> repositories = VcsRepositoryManager.getInstance(project).getRepositories();
 

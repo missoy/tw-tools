@@ -1,5 +1,6 @@
 package com.baiguiren.tools.env;
 
+import com.baiguiren.tools.utils.ProjectUtil;
 import com.intellij.ide.SaveAndSyncHandlerImpl;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
@@ -49,7 +50,7 @@ public class SwitchEnv {
     }
 
     public static void switchToEnv(AnActionEvent e, String env) throws IOException {
-        Project project = e.getData(CommonDataKeys.PROJECT);
+        Project project = ProjectUtil.getActiveProject();
         project.save();
         FileDocumentManager.getInstance().saveAllDocuments();
         ProjectManagerEx.getInstanceEx().blockReloadingProjectOnExternalChanges();

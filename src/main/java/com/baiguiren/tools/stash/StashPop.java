@@ -1,5 +1,6 @@
 package com.baiguiren.tools.stash;
 
+import com.baiguiren.tools.utils.ProjectUtil;
 import com.intellij.dvcs.repo.Repository;
 import com.intellij.dvcs.repo.VcsRepositoryManager;
 import com.intellij.ide.SaveAndSyncHandlerImpl;
@@ -25,7 +26,7 @@ import java.util.Collection;
 public class StashPop extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        Project project = e.getData(CommonDataKeys.PROJECT);
+        Project project = ProjectUtil.getActiveProject();
         Collection<Repository> repositories = VcsRepositoryManager.getInstance(project).getRepositories();
 
         project.save();
