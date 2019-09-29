@@ -1,36 +1,28 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.4.3</version>
+    <version>1.4.4</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
     <h1>tw-tools</h1>
     <br/>
 
-    <h2>功能</h2>
+    <h2>What can tw tools do</h2>
     <ul>
-        <li>切换 env (Tools -> "Switch Env")</li>
-        <li>切换所有模块分支到某一个分支 (Tools -> "Switch Branch")</li>
-        <li>选中接口 uri 地址，右键点击跳转到文档页面</li>
-        <li>stash 所有模块, stash pop 所有模块 (Tools -> "Stash Helper")</li>
+        <li>Switch Laravel env file (Tools -> "Switch Env")</li>
+        <li>Switch all module's current branch (Tools -> "Switch Branch")</li>
+        <li>Jump to docs page by select api uri</li>
+        <li>Stash all repositories, stash pop all repositories (Tools -> "Stash Helper")</li>
     </ul>
     ]]></description>
 
     <change-notes><![CDATA[
     <ul>
-        <li>添加切换所有模块的分支到某一分支的菜单</li>
-        <li>添加切换 env 的菜单</li>
-        <li>添加选中 uri 地址跳转到文档页的功能</li>
-        <li>修复 api-blame 请求地址</li>
-        <li>添加 120 分支切换支持</li>
-        <li>添加 stash 所有模块、stash pop 所有模块的功能</li>
-        <li>fix 切换 env 之后文件状态立即从磁盘获取最新内容</li>
-        <li>进行 Stash All 和 Stash Pop All 操作的时候显示 modal loading 框</li>
-        <li>进行 Switch Branch 操作的时候，在本地没有那个分支的时候先创建对应分支</li>
-        <li>121、122 新分支支持</li>
-        <li>123 新分支支持</li>
-        <li>125 新分支支持</li>
+        <li>Add menu to switch to branch</li>
+        <li>Add menu to switch env file</li>
+        <li>Add menu to stash/stash pop all repositories</li>
+        <li>Add new version support</li>
     </ul>
     ]]>
     </change-notes>
@@ -52,29 +44,29 @@
     </project-components>
 
     <actions>
-        <group id="Stash Helper" text="Stash helper" popup="true">
+        <group id="Stash Helper" text="Stash Helper" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.stash.Stash" id="stash all" text="Stash All" description="stash all repos"/>
-            <action class="com.baiguiren.tools.stash.StashPop" id="stash pop all" text="Stash Pop All" description="stash pop all repos"/>
+            <action class="com.baiguiren.tools.stash.Stash" id="stash all" text="Stash All" description="Stash all repos"/>
+            <action class="com.baiguiren.tools.stash.StashPop" id="stash pop all" text="Stash Pop All" description="Stash pop all repos"/>
         </group>
         <group id="Switch Branch" text="Switch Branch" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa1" description="switch branch to qa1"/>
-            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa2" description="switch branch to qa2"/>
-            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="switch branch to qa3"/>
-            <action class="com.baiguiren.tools.branch.V124" id="branch_v124" text="v124" description="switch branch to v124"/>
-            <action class="com.baiguiren.tools.branch.V125" id="branch_v125" text="v125" description="switch branch to v125"/>
-            <action class="com.baiguiren.tools.branch.V126" id="branch_v126" text="v126" description="switch branch to v126"/>
-            <action class="com.baiguiren.tools.branch.V127" id="branch_v127" text="v127" description="switch branch to v127"/>
-            <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="switch branch to release"/>
-            <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="switch branch to master"/>
+            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa1" description="Switch branch to qa1"/>
+            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa2" description="Switch branch to qa2"/>
+            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="Switch branch to qa3"/>
+            <action class="com.baiguiren.tools.branch.V124" id="branch_v124" text="v124" description="Switch branch to v124"/>
+            <action class="com.baiguiren.tools.branch.V125" id="branch_v125" text="v125" description="Switch branch to v125"/>
+            <action class="com.baiguiren.tools.branch.V126" id="branch_v126" text="v126" description="Switch branch to v126"/>
+            <action class="com.baiguiren.tools.branch.V127" id="branch_v127" text="v127" description="Switch branch to v127"/>
+            <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="Switch branch to release"/>
+            <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="Switch branch to master"/>
         </group>
         <group id="Switch Env" text="Switch Env" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.env.Qa1" id="qa1" text="qa1" description="switch env to qa1"/>
-            <action class="com.baiguiren.tools.env.Qa2" id="qa2" text="qa2" description="switch env to qa2"/>
-            <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="switch env to qa3"/>
-            <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="switch env to demo"/>
+            <action class="com.baiguiren.tools.env.Qa1" id="qa1" text="qa1" description="Switch env to qa1"/>
+            <action class="com.baiguiren.tools.env.Qa2" id="qa2" text="qa2" description="Switch env to qa2"/>
+            <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="Switch env to qa3"/>
+            <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="Switch env to demo"/>
         </group>
         <group id="Api Blame" text="Api Blame" description="Api blame" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
