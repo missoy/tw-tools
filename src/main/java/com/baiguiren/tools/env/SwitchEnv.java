@@ -85,7 +85,7 @@ public class SwitchEnv {
 
         for (String line: lines) {
             if (line.contains("DB_HOST") && !line.contains("MONGO")) {
-                line = line.replaceAll("rm-wz9obs5n6o606f5h7rw\\.mysql\\.rds\\.aliyuncs\\.com", "119.23.209.74");
+                line = line.replaceAll("rm-wz9x6k48lx55m97l5rw\\.mysql\\.rds\\.aliyuncs\\.com", "119.23.209.74");
             }
             sb.append(line + "\n");
         }
