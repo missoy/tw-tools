@@ -102,6 +102,12 @@ public class SwitchEnv {
                 content = replaceDemoHost(content);
             }
 
+            if (env.equals("qa2")) {
+                content = content.replaceAll("DB_HOST=mysql", "DB_HOST=" + domains.get(env));
+                content = content.replaceAll("MONGO_DB_HOST=mongodb", "MONGO_DB_HOST=" + domains.get(env));
+                content = content.replaceAll("REDIS_HOST=redis", "REDIS_HOST=" + domains.get(env));
+            }
+
             filePutContents(toPath(), content);
         } catch (IOException e) {
             e.printStackTrace();
