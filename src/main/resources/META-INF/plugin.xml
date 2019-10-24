@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.4.9</version>
+    <version>1.4.10</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -55,6 +55,8 @@
             <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa2" description="Switch branch to qa2"/>
             <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="Switch branch to qa3"/>
             <action class="com.baiguiren.tools.branch.V127" id="branch_v127" text="v127" description="Switch branch to v127"/>
+            <action class="com.baiguiren.tools.branch.V1271" id="branch_v1271" text="v1271" description="Switch branch to v1271"/>
+            <action class="com.baiguiren.tools.branch.V1272" id="branch_v1272" text="v1272" description="Switch branch to v1272"/>
             <action class="com.baiguiren.tools.branch.V128" id="branch_v128" text="v128" description="Switch branch to v128"/>
             <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="Switch branch to release"/>
             <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="Switch branch to master"/>
