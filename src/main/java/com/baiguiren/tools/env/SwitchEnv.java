@@ -15,9 +15,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class SwitchEnv {
@@ -43,10 +41,10 @@ public class SwitchEnv {
     }
 
     private static void putFiles() {
-        files.put("qa1", ".env.qa1");
-        files.put("qa2", ".env.qa2");
-        files.put("qa3", ".env.qa3");
-        files.put("demo", ".env.release");
+        files.put("qa1", ".env.dev.qa1");
+        files.put("qa2", ".env.dev.qa2");
+        files.put("qa3", ".env.dev.qa3");
+        files.put("demo", ".env.dev.release");
     }
 
     public static void switchToEnv(AnActionEvent e, String env) throws IOException {
@@ -63,8 +61,6 @@ public class SwitchEnv {
         if (to.exists()) to.delete();
         Files.copy(from.toPath(), to.toPath());
 
-        replaceHost();
-
         // 重新从硬盘加载
         VirtualFile virtualFile = VfsUtil.findFileByIoFile(to, true);
         if (virtualFile != null) {
@@ -79,41 +75,6 @@ public class SwitchEnv {
         notification.notify(e.getData(CommonDataKeys.PROJECT));
     }
 
-    private static String replaceDemoHost(String content) {
-        StringBuilder sb = new StringBuilder();
-        String[] lines = content.split("\n");
-
-        for (String line: lines) {
-            if (line.contains("DB_HOST") && !line.contains("MONGO")) {
-                line = line.replaceAll("rm-wz9x6k48lx55m97l5rw\\.mysql\\.rds\\.aliyuncs\\.com", "119.23.209.74");
-            }
-            sb.append(line + "\n");
-        }
-
-        return sb.toString();
-    }
-
-    private static void replaceHost() {
-        try {
-            String content = readFile(fromPath());
-            content = content.replaceAll("127\\.0\\.0\\.1", domains.get(env));
-
-            if (env.equals("demo")) {
-                content = replaceDemoHost(content);
-            }
-
-            if (env.equals("qa2") || env.equals("qa3")) {
-                content = content.replaceAll("DB_HOST=mysql", "DB_HOST=" + domains.get(env));
-                content = content.replaceAll("MONGO_DB_HOST=mongodb", "MONGO_DB_HOST=" + domains.get(env));
-                content = content.replaceAll("REDIS_HOST=redis", "REDIS_HOST=" + domains.get(env));
-            }
-
-            filePutContents(toPath(), content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private static String fromPath() {
         return basePath() + "/" + files.get(env);
     }
@@ -126,21 +87,5 @@ public class SwitchEnv {
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
 
         return project.getBasePath();
-    }
-
-    private static void filePutContents(String filename, String data) {
-        try {
-            FileWriter fstream = new FileWriter(filename, false);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(data);
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String readFile(String path) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded, StandardCharsets.UTF_8);
     }
 }
