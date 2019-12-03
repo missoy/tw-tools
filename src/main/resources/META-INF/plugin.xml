@@ -51,9 +51,9 @@
         </group>
         <group id="Switch Branch" text="Switch Branch" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa1" description="Switch branch to qa1"/>
-            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa2" description="Switch branch to qa2"/>
-            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa3" description="Switch branch to qa3"/>
+            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa/qa1" description="Switch branch to qa1"/>
+            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa/qa2" description="Switch branch to qa2"/>
+            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa/qa3" description="Switch branch to qa3"/>
             <action class="com.baiguiren.tools.branch.V128" id="branch_v128" text="dev/v1.2.8" description="Switch branch to dev/v1.2.8"/>
             <action class="com.baiguiren.tools.branch.V1281" id="branch_v1281" text="dev/v1.2.8.1" description="Switch branch to dev/v1.2.8.1"/>
             <action class="com.baiguiren.tools.branch.V1282" id="branch_v1282" text="dev/v1.2.8.2" description="Switch branch to dev/v1.2.8.2"/>
