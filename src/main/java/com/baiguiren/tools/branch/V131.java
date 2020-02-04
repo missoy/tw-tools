@@ -4,9 +4,9 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class V1281 extends AnAction {
+public class V131 extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        SwitchBranch.switchTo("dev/v1.2.8.1");
+        SwitchBranch.switchTo("dev/v1.3.1");
     }
 }

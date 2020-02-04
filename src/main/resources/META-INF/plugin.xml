@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -54,10 +54,8 @@
             <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa/qa1" description="Switch branch to qa/qa1"/>
             <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa/qa2" description="Switch branch to qa/qa2"/>
             <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa/qa3" description="Switch branch to qa/qa3"/>
-            <action class="com.baiguiren.tools.branch.V128" id="branch_v128" text="dev/v1.2.8" description="Switch branch to dev/v1.2.8"/>
-            <action class="com.baiguiren.tools.branch.V1281" id="branch_v1281" text="dev/v1.2.8.1" description="Switch branch to dev/v1.2.8.1"/>
-            <action class="com.baiguiren.tools.branch.V1282" id="branch_v1282" text="dev/v1.2.8.2" description="Switch branch to dev/v1.2.8.2"/>
             <action class="com.baiguiren.tools.branch.V130" id="branch_v130" text="dev/v1.3.0" description="Switch branch to dev/v1.3.0"/>
+            <action class="com.baiguiren.tools.branch.V131" id="branch_v130" text="dev/v1.3.1" description="Switch branch to dev/v1.3.1"/>
             <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="Switch branch to release"/>
             <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="Switch branch to master"/>
         </group>
