@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.5.4</version>
+    <version>1.6.0</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -75,6 +75,13 @@
             <action class="com.baiguiren.tools.api.blame.Put" id="api.blame.put" text="PUT" description="Open docs url in browser (PUT method)"/>
             <action class="com.baiguiren.tools.api.blame.Patch" id="api.blame.patch" text="PATCH" description="Open docs url in browser (PATCH method)"/>
             <action class="com.baiguiren.tools.api.blame.Delete" id="api.blame.delete" text="DELETE" description="Open docs url in browser (DELETE method)"/>
+        </group>
+        <group id="Open Docs" text="Open Docs" description="Open docs" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action class="com.baiguiren.tools.docs.Qa1" id="docs.qa1" text="qa1" description="Open docs url in browser (qa1)"/>
+            <action class="com.baiguiren.tools.docs.Qa2" id="docs.qa2" text="qa2" description="Open docs url in browser (qa2)"/>
+            <action class="com.baiguiren.tools.docs.Qa3" id="docs.qa3" text="qa3" description="Open docs url in browser (qa3)"/>
+            <action class="com.baiguiren.tools.docs.Demo" id="docs.qa4" text="demo" description="Open docs url in browser (demo)"/>
         </group>
     </actions>
 
