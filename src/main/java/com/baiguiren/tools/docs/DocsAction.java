@@ -1,19 +1,21 @@
 package com.baiguiren.tools.docs;
 
+import com.baiguiren.tools.utils.NotificationUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.text.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,21 +50,47 @@ public class DocsAction extends AnAction {
     private static String getEnvDomain() {
         String basePath = anActionEvent.getProject().getBasePath();
 
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(basePath + "/.env"));
-            for (String line: lines) {
-                if (StringUtil.startsWith(line, "url=")) {
-                    line = line.replace("url=", "");
-                    line = line.trim();
-                    line = line.replace("http://", "");
-                    return line;
-                }
+        FileDocumentManager.getInstance().saveAllDocuments();
+
+        String content = readFileContent(basePath + "/.env");
+        NotificationUtil.notification(content);
+        String[] lines = content.trim().split("\n");
+        for (String line: lines) {
+            if (StringUtil.startsWith(line, "url=")) {
+                line = line.replace("url=", "");
+                line = line.trim();
+                line = line.replace("http://", "");
+                return line;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         return "";
+    }
+
+    public static String readFileContent(String fileName) {
+        File file = new File(fileName);
+        BufferedReader reader = null;
+        StringBuffer sbf = new StringBuffer();
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempStr;
+            while ((tempStr = reader.readLine()) != null) {
+                sbf.append(tempStr + "\n");
+            }
+            reader.close();
+            return sbf.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        return sbf.toString();
     }
 
     /**
