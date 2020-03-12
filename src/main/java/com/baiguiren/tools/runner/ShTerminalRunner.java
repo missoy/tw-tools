@@ -110,10 +110,11 @@ public class ShTerminalRunner extends ShRunner {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                Field field = ProcessTtyConnector.class.getField("myProcess");
-                if(field != null) {
-                    return (Process) field.get(ttyConnector);
-                }
+                return ttyConnector.getProcess();
+//                Field field = ProcessTtyConnector.class.getField("myProcess");
+//                if(field != null) {
+//                    return (Process) field.get(ttyConnector);
+//                }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
