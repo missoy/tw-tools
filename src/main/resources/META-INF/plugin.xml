@@ -70,12 +70,13 @@
             <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="Switch env to qa3"/>
             <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="Switch env to demo"/>
         </group>
-        <action class="com.baiguiren.tools.docs.DocsAction" popup="false" id="open_docs" text="Open Docs" description="Open docs url in browser">
+        <group id="Pycharm" text="Pycharm Tools">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
-        <action class="com.baiguiren.tools.runner.Pytest" popup="false" id="pytest" text="Run with Pytest" description="Run with pytest">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
+            <action class="com.baiguiren.tools.runner.Pytest" popup="false" id="pytest" text="Run with Pytest" description="Run with pytest"/>
+            <action class="com.baiguiren.tools.runner.PytestRunMethod" popup="false" id="pytest_run_method" text="Run with Pytest(Method)" description="Run with pytest(Method)"/>
+            <action class="com.baiguiren.tools.docs.DocsAction" popup="false" id="open_docs" text="Open Docs" description="Open docs url in browser"/>
+            <separator/>
+        </group>
     </actions>
 
 </idea-plugin>
