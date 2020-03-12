@@ -35,12 +35,16 @@ public class DocsAction extends AnAction {
     private static void openInBrowser(AnActionEvent e) {
         anActionEvent = e;
         String line = getLineContent(e);
-        String urlStr = matchUrl(line);
+        String urlStr = getUri(line);
         if (urlStr.equals("")) {
             return;
         }
+        if (!urlStr.startsWith("/")) {
+            urlStr = "/" + urlStr;
+        }
 
-        urlStr = urlStr.replace("qa1.api.86yqy.com", getEnvDomain());
+        urlStr = "http://" + getEnvDomain() + urlStr;
+//        NotificationUtil.notification(urlStr);
         open(urlStr);
     }
 
@@ -53,7 +57,7 @@ public class DocsAction extends AnAction {
         FileDocumentManager.getInstance().saveAllDocuments();
 
         String content = readFileContent(basePath + "/.env");
-        NotificationUtil.notification(content);
+//        NotificationUtil.notification(content);
         String[] lines = content.trim().split("\n");
         for (String line: lines) {
             if (StringUtil.startsWith(line, "url=")) {
@@ -109,6 +113,21 @@ public class DocsAction extends AnAction {
         int lineEndOffset = document.getLineEndOffset(lineNum);
 
         return document.getText(new TextRange(lineStartOffset, lineEndOffset));
+    }
+
+    /**
+     * 获取 uri
+     *
+     * @param line doc_uri 所在行
+     * @return uri
+     */
+    private static String getUri(String line)
+    {
+        line = line.split("=")[1];
+        line = line.replace("'", "");
+        line = line.replace(",\n", "");
+
+        return line;
     }
 
     /**
