@@ -36,6 +36,7 @@
     -->
     <depends>com.intellij.modules.lang</depends>
     <depends>Git4Idea</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
 
     <application-components>
     </application-components>

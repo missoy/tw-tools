@@ -36,7 +36,8 @@ intellij {
             'CSS',
             'java-i18n',
             'properties',
-            'git4idea'
+            'git4idea',
+            'terminal'
     ]
     pluginName 'tw tools'
 }
