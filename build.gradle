@@ -33,7 +33,6 @@ intellij {
     plugins = [
 //            "com.jetbrains.php:${phpPluginVersion}",
 //            "com.jetbrains.php.blade:${bladePluginVersion}",
-            'CSS',
             'java-i18n',
             'properties',
             'git4idea',

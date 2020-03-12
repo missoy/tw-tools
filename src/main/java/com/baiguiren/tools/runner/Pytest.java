@@ -14,7 +14,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.terminal.JBTerminalWidget;
-import com.intellij.ui.TextComponent;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import org.jetbrains.annotations.NotNull;
@@ -48,5 +47,7 @@ public class Pytest extends AnAction {
 //        });
 //
 //        window.getAnchor().isSplitVertically();
+        ShTerminalRunner shTerminalRunner = new ShTerminalRunner(e.getProject());
+        shTerminalRunner.run("ls /\r", "/Users/ruby/code/YQY-API");
     }
 }
