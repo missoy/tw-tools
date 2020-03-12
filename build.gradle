@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.intellij" version "0.4.4"
+    id "org.jetbrains.intellij" version "0.4.7"
 }
 
 dependencies {
@@ -47,7 +47,7 @@ patchPluginXml {
 
 group 'com.baiguiren'
 
-version '1.6.2'
+version '1.6.3'
 
 wrapper {
     gradleVersion '5.4.1'

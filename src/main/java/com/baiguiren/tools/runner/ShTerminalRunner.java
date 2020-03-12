@@ -15,14 +15,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.terminal.LocalTerminalDirectRunner;
 import org.jetbrains.plugins.terminal.TerminalToolWindowFactory;
-//import org.jetbrains.plugins.terminal.TerminalUtil;
+import org.jetbrains.plugins.terminal.TerminalUtil;
 import org.jetbrains.plugins.terminal.TerminalView;
 import org.jetbrains.plugins.terminal.arrangement.TerminalWorkingDirectoryManager;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -47,12 +45,10 @@ public class ShTerminalRunner extends ShRunner {
                 window.activate(null);
                 contentManager.setSelectedContent(pair.first);
                 runCommand(pair.second, command);
-            }
-            catch (ExecutionException e) {
+            } catch (ExecutionException e) {
                 LOG.warn("Error running terminal", e);
             }
-        }
-        else {
+        } else {
             terminalView.createNewSession(new LocalTerminalDirectRunner(myProject) {
                 @Override
                 protected PtyProcess createProcess(@Nullable String directory, @Nullable String commandHistoryFilePath) throws ExecutionException {
@@ -90,11 +86,11 @@ public class ShTerminalRunner extends ShRunner {
         JBTerminalWidget widget = TerminalView.getWidgetByContent(content);
         if (widget == null) return null;
         if (widget.getTtyConnector() instanceof ProcessTtyConnector) {
-            ProcessTtyConnector ttyConnector = (ProcessTtyConnector)widget.getTtyConnector();
+            ProcessTtyConnector ttyConnector = (ProcessTtyConnector) widget.getTtyConnector();
             String currentWorkingDirectory = TerminalWorkingDirectoryManager.getWorkingDirectory(widget, null);
             if (currentWorkingDirectory == null) return null;
 //            if (!TerminalUtil.hasRunningCommands(ttyConnector) && currentWorkingDirectory.equals(workingDirectory)) {
-                return Pair.create(content, getProcessFromProcessTtyConnector(ttyConnector)); //ttyConnector.getProcess() 2019
+            return Pair.create(content, getProcessFromProcessTtyConnector(ttyConnector)); //ttyConnector.getProcess() 2019
 //            }
         }
         return null;
@@ -102,41 +98,20 @@ public class ShTerminalRunner extends ShRunner {
 
     // for 2017 to 2019
     private static Process getProcessFromProcessTtyConnector(ProcessTtyConnector ttyConnector) {
-        try {
-            Method method = ProcessTtyConnector.class.getMethod("ttyConnector");
-            if(method != null) {
-                return (Process) method.invoke(ttyConnector);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                return ttyConnector.getProcess();
-//                Field field = ProcessTtyConnector.class.getField("myProcess");
-//                if(field != null) {
-//                    return (Process) field.get(ttyConnector);
-//                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        return null;
+        return ttyConnector.getProcess();
     }
 
-    private static void runCommand(@NotNull Process process, @Nullable String command)
-            throws ExecutionException {
+    private static void runCommand(@NotNull Process process, @Nullable String command) throws ExecutionException {
         if (command != null) {
             try {
                 // Workaround for ANSI escape code IDEA-221031
                 process.getOutputStream().write(KeyEvent.VK_BACK_SPACE);
                 process.getOutputStream().write(command.getBytes(CharsetToolkit.UTF8_CHARSET));
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 throw new ExecutionException("Fail to start " + command, ex);
             }
-        }
-        else {
-            throw new ExecutionException("Cannot run command:" + command, null);
+        } else {
+            throw new ExecutionException("Command cannot be null.", null);
         }
     }
 }
