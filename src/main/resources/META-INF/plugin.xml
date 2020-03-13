@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>1.6.3</version>
+    <version>2.0.0</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
