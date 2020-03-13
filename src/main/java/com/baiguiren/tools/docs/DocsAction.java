@@ -1,14 +1,9 @@
 package com.baiguiren.tools.docs;
 
-import com.baiguiren.tools.utils.NotificationUtil;
+import com.baiguiren.tools.utils.ProjectUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.editor.CaretModel;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
-import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.text.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +29,7 @@ public class DocsAction extends AnAction {
      */
     private static void openInBrowser(AnActionEvent e) {
         anActionEvent = e;
-        String line = getLineContent(e);
+        String line = ProjectUtil.getLineContent(e);
         String urlStr = getUri(line);
         if (urlStr.equals("")) {
             return;
@@ -43,6 +38,10 @@ public class DocsAction extends AnAction {
             urlStr = "/" + urlStr;
         }
 
+        String domain = getEnvDomain();
+        if (domain.equals("")) {
+            return;
+        }
         urlStr = "http://" + getEnvDomain() + urlStr;
 //        NotificationUtil.notification(urlStr);
         open(urlStr);
@@ -57,6 +56,9 @@ public class DocsAction extends AnAction {
         FileDocumentManager.getInstance().saveAllDocuments();
 
         String content = readFileContent(basePath + "/.env");
+        if (content.equals("")) {
+            return "";
+        }
 //        NotificationUtil.notification(content);
         String[] lines = content.trim().split("\n");
         for (String line: lines) {
@@ -73,6 +75,9 @@ public class DocsAction extends AnAction {
 
     public static String readFileContent(String fileName) {
         File file = new File(fileName);
+        if (!file.exists()) {
+            return "";
+        }
         BufferedReader reader = null;
         StringBuffer sbf = new StringBuffer();
         try {
@@ -98,24 +103,6 @@ public class DocsAction extends AnAction {
     }
 
     /**
-     * @param e AnActionEvent
-     * @return 光标所在行的内容
-     */
-    private static String getLineContent(AnActionEvent e) {
-        final Editor editor = e.getData(CommonDataKeys.EDITOR);
-        if (editor == null) return "";
-        Document document = editor.getDocument();
-        final CaretModel caretModel = editor.getCaretModel();
-
-        int caretOffset = caretModel.getOffset();
-        int lineNum = document.getLineNumber(caretOffset);
-        int lineStartOffset = document.getLineStartOffset(lineNum);
-        int lineEndOffset = document.getLineEndOffset(lineNum);
-
-        return document.getText(new TextRange(lineStartOffset, lineEndOffset));
-    }
-
-    /**
      * 获取 uri
      *
      * @param line doc_uri 所在行
@@ -125,7 +112,8 @@ public class DocsAction extends AnAction {
     {
         line = line.split("=")[1];
         line = line.replace("'", "");
-        line = line.replace(",\n", "");
+        line = line.replace(",", "");
+        line = line.replace("\n", "");
 
         return line;
     }
