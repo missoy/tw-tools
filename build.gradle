@@ -47,7 +47,7 @@ patchPluginXml {
 
 group 'com.baiguiren'
 
-version '2.0.0'
+version '2.0.1'
 
 wrapper {
     gradleVersion '5.4.1'
