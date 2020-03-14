@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -12,8 +12,13 @@
     <ul>
         <li>Switch Laravel env file (Tools -> "Switch Env")</li>
         <li>Switch all module's current branch (Tools -> "Switch Branch")</li>
-        <li>Jump to docs page by select api uri</li>
-        <li>Stash all repositories, stash pop all repositories (Tools -> "Stash Helper")</li>
+    </ul>
+
+    <h2>Pytest support</h2>
+    <ul>
+        <li>Run folder with Pytest By right-click menu</li>
+        <li>Run file with Pytest By right-click menu</li>
+        <li>Run method with Pytest By right-click menu</li>
     </ul>
     ]]></description>
 
@@ -21,14 +26,13 @@
     <ul>
         <li>Add menu to switch to branch</li>
         <li>Add menu to switch env file</li>
-        <li>Add menu to stash/stash pop all repositories</li>
-        <li>Add new version support</li>
+        <li>Add pytest support</li>
     </ul>
     ]]>
     </change-notes>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="173.4127"/>
+    <idea-version since-build="183.2371"/>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
@@ -72,14 +76,14 @@
         </group>
         <group id="Pycharm" text="Pycharm Tools">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.runner.Pytest" popup="false" id="pytest" text="Run with Pytest" description="Run with pytest"/>
-            <action class="com.baiguiren.tools.runner.PytestRunMethod" popup="false" id="pytest_run_method" text="Run with Pytest(Method)" description="Run with pytest(Method)"/>
+            <action class="com.baiguiren.tools.runner.Pytest" icon="AllIcons.General.Run" popup="false" id="pytest" text="Run with Pytest" description="Run with pytest"/>
+            <action class="com.baiguiren.tools.runner.PytestRunMethod" icon="AllIcons.General.Run" popup="false" id="pytest_run_method" text="Run with Pytest(Method)" description="Run with pytest(Method)"/>
             <action class="com.baiguiren.tools.docs.DocsAction" popup="false" id="open_docs" text="Open Docs" description="Open docs url in browser"/>
             <separator/>
         </group>
         <group id="Run Tests" text="Pycharm Tools">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="CutCopyPasteGroup"/>
-            <action class="com.baiguiren.tools.runner.Pytest" popup="false" id="project_pytest" text="Run with Pytest" description="Run with pytest"/>
+            <action class="com.baiguiren.tools.runner.Pytest" icon="AllIcons.General.Run" popup="false" id="project_pytest" text="Run with Pytest" description="Run with pytest"/>
             <separator/>
         </group>
     </actions>

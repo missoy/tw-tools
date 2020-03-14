@@ -42,12 +42,12 @@ intellij {
 }
 
 patchPluginXml {
-    sinceBuild '173'
+    sinceBuild '183'
 }
 
 group 'com.baiguiren'
 
-version '2.0.1'
+version '2.0.2'
 
 wrapper {
     gradleVersion '5.4.1'
