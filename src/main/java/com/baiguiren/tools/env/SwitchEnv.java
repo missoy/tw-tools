@@ -71,7 +71,7 @@ public class SwitchEnv {
         VirtualFileManager.getInstance().refreshWithoutFileWatcher(false);
         ProjectManagerEx.getInstanceEx().unblockReloadingProjectOnExternalChanges();
 
-        Notification notification = new Notification("tw tools", "Switch Env", "Successful switch to " + env + ".", NotificationType.INFORMATION);
+        Notification notification = new Notification("tw tools", "Switch env", "Successful switch to " + env + ".", NotificationType.INFORMATION);
         notification.notify(e.getData(CommonDataKeys.PROJECT));
     }
 

@@ -1,5 +1,6 @@
 package com.baiguiren.tools.utils;
 
+import com.baiguiren.tools.runner.ShTerminalRunner;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.plugins.terminal.TerminalView;
 
@@ -17,7 +18,9 @@ public class TerminalUtil {
         if (e.getProject() == null) {
             return;
         }
-        TerminalView terminalView = TerminalView.getInstance(e.getProject());
-        terminalView.createLocalShellWidget(e.getProject().getBasePath()).executeCommand(command);
+//        TerminalView terminalView = TerminalView.getInstance(e.getProject());
+//        terminalView.createLocalShellWidget(e.getProject().getBasePath()).executeCommand(command);
+        ShTerminalRunner shTerminalRunner = new ShTerminalRunner(e.getProject());
+        shTerminalRunner.run(command, e.getProject().getBasePath());
     }
 }

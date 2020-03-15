@@ -61,7 +61,7 @@ public class SwitchBranchAction extends AnAction {
 
         gitBrancher.checkout(to, false, gitRepositories, () -> System.out.println("Finish checkout."));
 
-        Notification notification = new Notification("tw tools", "Switch Branch", "Successful switch to " + to + ".", NotificationType.INFORMATION);
+        Notification notification = new Notification("tw tools", "Switch branch", "Successful switch to " + to + ".", NotificationType.INFORMATION);
         notification.notify(project);
     }
 }

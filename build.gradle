@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.baiguiren'
-version '2.0.4'
+version '2.0.5'
 
 repositories {
     mavenCentral()
@@ -19,7 +19,8 @@ intellij {
     version '2019.3'
     plugins = [
             'git4idea',
-            'terminal'
+            'terminal',
+            'sh',
     ]
     pluginName 'tw tools'
 }
