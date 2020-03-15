@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/eleven26/tw-tools">
     <id>com.baiguiren.tools</id>
     <name>tw tools</name>
-    <version>2.0.3</version>
+    <version>2.0.4</version>
     <vendor email="rubymay21s@gmail.com" url="https://github.com/eleven26">eleven26</vendor>
 
     <description><![CDATA[
@@ -47,30 +47,13 @@
     </project-components>
 
     <actions>
-        <group id="Stash Helper" text="Stash Helper" popup="true">
+        <group id="com.baiguiren.tools.branch.SwitchBranchActionGroup" class="com.baiguiren.tools.branch.SwitchBranchActionGroup" popup="true"
+               text="Switch Branch" description="Switch branch">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.stash.Stash" id="stash all" text="Stash All" description="Stash all repos"/>
-            <action class="com.baiguiren.tools.stash.StashPop" id="stash pop all" text="Stash Pop All" description="Stash pop all repos"/>
         </group>
-        <group id="Switch Branch" text="Switch Branch" popup="true">
+        <group id="com.baiguiren.tools.env.SwitchEnvActionGroup" class="com.baiguiren.tools.env.SwitchEnvActionGroup" popup="true"
+               text="Switch Env" description="Switch env">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.branch.Qa1" id="branch_qa1" text="qa/qa1" description="Switch branch to qa/qa1"/>
-            <action class="com.baiguiren.tools.branch.Qa2" id="branch_qa2" text="qa/qa2" description="Switch branch to qa/qa2"/>
-            <action class="com.baiguiren.tools.branch.Qa3" id="branch_qa3" text="qa/qa3" description="Switch branch to qa/qa3"/>
-            <action class="com.baiguiren.tools.branch.V130" id="branch_v130" text="dev/v1.3.0" description="Switch branch to dev/v1.3.0"/>
-            <action class="com.baiguiren.tools.branch.V131" id="branch_v131" text="dev/v1.3.1" description="Switch branch to dev/v1.3.1"/>
-            <action class="com.baiguiren.tools.branch.V132" id="branch_v132" text="dev/v1.3.2" description="Switch branch to dev/v1.3.2"/>
-            <action class="com.baiguiren.tools.branch.V133" id="branch_v133" text="dev/v1.3.3" description="Switch branch to dev/v1.3.3"/>
-            <action class="com.baiguiren.tools.branch.V140" id="branch_v140" text="dev/v1.4.0" description="Switch branch to dev/v1.4.0"/>
-            <action class="com.baiguiren.tools.branch.Release" id="branch_release" text="release" description="Switch branch to release"/>
-            <action class="com.baiguiren.tools.branch.Master" id="branch_master" text="master" description="Switch branch to master"/>
-        </group>
-        <group id="Switch Env" text="Switch Env" popup="true">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action class="com.baiguiren.tools.env.Qa1" id="qa1" text="qa1" description="Switch env to qa1"/>
-            <action class="com.baiguiren.tools.env.Qa2" id="qa2" text="qa2" description="Switch env to qa2"/>
-            <action class="com.baiguiren.tools.env.Qa3" id="qa3" text="qa3" description="Switch env to qa3"/>
-            <action class="com.baiguiren.tools.env.Demo" id="demo" text="demo" description="Switch env to demo"/>
         </group>
         <group id="Pycharm" text="Pycharm Tools">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
