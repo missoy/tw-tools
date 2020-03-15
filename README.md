@@ -12,5 +12,3 @@
 ![switch_env](https://github.com/eleven26/tw-tools/blob/master/screenshots/switch_env.png)
 
 ![switch_branch](https://github.com/eleven26/tw-tools/blob/master/screenshots/switch_branch.png)
-
-![go_to_docs](https://github.com/eleven26/tw-tools/blob/master/screenshots/go_to_docs.png)
