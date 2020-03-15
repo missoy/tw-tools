@@ -1,40 +1,23 @@
-buildscript {
-    repositories {
-        mavenCentral()
-
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-        maven {
-            url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
-        }
-    }
+plugins {
+    id 'java'
+    id "org.jetbrains.intellij" version "0.4.16"
 }
 
-plugins {
-    id "org.jetbrains.intellij" version "0.4.7"
+group 'com.baiguiren'
+version '2.0.3'
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    // 是我输了，这里被 intellij 重定向了，重定向之后 404 了，导致无法引入，先手动引入吧
-//    implementation 'com.alibaba:fastjson:1.2.58'
 }
 
-apply plugin: 'idea'
-apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'java'
-
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 intellij {
-    version ideaVersion
-    updateSinceUntilBuild false
+    version '2019.3'
     plugins = [
-//            "com.jetbrains.php:${phpPluginVersion}",
-//            "com.jetbrains.php.blade:${bladePluginVersion}",
-            'java-i18n',
-            'properties',
             'git4idea',
             'terminal'
     ]
@@ -42,12 +25,7 @@ intellij {
 }
 
 patchPluginXml {
-    sinceBuild '183'
 }
-
-group 'com.baiguiren'
-
-version '2.0.2'
 
 wrapper {
     gradleVersion '5.4.1'

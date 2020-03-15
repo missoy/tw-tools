@@ -1,13 +1,15 @@
 package com.baiguiren.tools.runner;
 
 import com.baiguiren.tools.utils.ProjectUtil;
+import com.baiguiren.tools.utils.TerminalUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.plugins.terminal.TerminalView;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -17,8 +19,6 @@ public class PytestRunMethod extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         e = anActionEvent;
-        Project project = e.getProject();
-        String basePath = project.getBasePath();
         String relativePath = ProjectUtil.getRelativePath(e);
 
         // 光标所在方法名
@@ -31,10 +31,13 @@ public class PytestRunMethod extends AnAction {
         if (className.equals("")) {
             return;
         }
-        String path = relativePath + "::" + className + "::" + methodName;
 
-        ShTerminalRunner shTerminalRunner = new ShTerminalRunner(e.getProject());
-        shTerminalRunner.run("pytest " + path + "\n", basePath);
+        String path = relativePath + "::" + className + "::" + methodName;
+        try {
+            TerminalUtil.runCommand("pytest " + path, e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
