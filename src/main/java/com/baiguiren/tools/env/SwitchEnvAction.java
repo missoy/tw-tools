@@ -6,13 +6,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-public class Qa1 extends AnAction {
+public class SwitchEnvAction extends AnAction {
+    private String env;
+
+    public SwitchEnvAction(String text) {
+        super(text);
+        this.env = text;
+    }
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         try {
-            SwitchEnv.switchToEnv(e, "qa1");
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            SwitchEnv.switchToEnv(e, this.env);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
