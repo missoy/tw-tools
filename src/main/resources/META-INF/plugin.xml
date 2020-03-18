@@ -40,12 +40,17 @@
     <depends>Git4Idea</depends>
     <depends>org.jetbrains.plugins.terminal</depends>
     <depends>com.jetbrains.sh</depends>
+    <depends>com.intellij.modules.python</depends>
 
     <application-components>
     </application-components>
 
     <project-components>
     </project-components>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <psi.referenceContributor implementation="com.baiguiren.tools.psi.DocLinkPsiReferenceContributor" />
+    </extensions>
 
     <actions>
         <group id="com.baiguiren.tools.branch.SwitchBranchActionGroup" class="com.baiguiren.tools.branch.SwitchBranchActionGroup" popup="true"
