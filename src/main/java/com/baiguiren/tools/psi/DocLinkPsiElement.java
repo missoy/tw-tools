@@ -1,23 +1,32 @@
 package com.baiguiren.tools.psi;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.lang.Language;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.impl.PsiElementBase;
 import com.jetbrains.python.psi.impl.PyStringLiteralExpressionImpl;
 import com.jetbrains.python.pyi.PyiUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class DocLinkPsiElement extends PyStringLiteralExpressionImpl {
     public DocLinkPsiElement(ASTNode astNode) {
         super(astNode);
     }
 
-    @NotNull
-    public PsiElement getNavigationElement() {
-        PsiElement element = PyiUtil.getOriginalElement(this);
-        PsiElement var10000 = element != null ? element : super.getNavigationElement();
+    @Override
+    public boolean canNavigate() {
+        return true;
+    }
 
-        System.out.println("getNavigationElement");
+    @Override
+    public boolean canNavigateToSource() {
+        return false;
+    }
 
-        return var10000;
+    @Override
+    public void navigate(boolean requestFocus) {
+        System.out.println("navigating");;
     }
 }

@@ -50,7 +50,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <psi.referenceContributor implementation="com.baiguiren.tools.psi.DocLinkPsiReferenceContributor" />
-        <gotoDeclarationHandler implementation="com.baiguiren.tools.psi.GoToDockLinkHandler" />
+<!--        <gotoDeclarationHandler implementation="com.baiguiren.tools.psi.GoToDockLinkHandler" />-->
     </extensions>
 
     <actions>

@@ -22,7 +22,7 @@ public class DocLinkPsiReferenceContributor extends PsiReferenceContributor {
 //                            System.out.println(element.getText());
                             System.out.println(element);
                             return new PsiReference[]{
-                                    new DocLinkPsiReference(element, element.getTextRange())
+                                    new DocLinkPsiReference(element, element.getTextRange(), "http://www.google.com")
                             };
                         }
                         return new PsiReference[0];
