@@ -20,6 +20,7 @@ public class DocLinkPsiReferenceContributor extends PsiReferenceContributor {
                         if (element.getText().startsWith("'/skynetapi/api")) {
 //                            System.out.println("matched");
 //                            System.out.println(element.getText());
+                            System.out.println(element);
                             return new PsiReference[]{
                                     new DocLinkPsiReference(element, element.getTextRange())
                             };
