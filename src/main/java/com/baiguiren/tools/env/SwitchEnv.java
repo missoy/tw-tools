@@ -37,14 +37,14 @@ public class SwitchEnv {
         domains.put("qa1", "qa1.api.86yqy.com");
         domains.put("qa2", "qa2.api.86yqy.com");
         domains.put("qa3", "qa3.api.86yqy.com");
-        domains.put("demo", "demo.api.86yqy.com");
+        domains.put("release", "demo.api.86yqy.com");
     }
 
     private static void putFiles() {
         files.put("qa1", ".env.dev.qa1");
         files.put("qa2", ".env.dev.qa2");
         files.put("qa3", ".env.dev.qa3");
-        files.put("demo", ".env.dev.release");
+        files.put("release", ".env.dev.release");
     }
 
     public static void switchToEnv(AnActionEvent e, String env) throws IOException {

@@ -47,6 +47,10 @@
     <project-components>
     </project-components>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <statusBarWidgetProvider implementation="com.baiguiren.tools.widget.MyStatusBarProvider" />
+    </extensions>
+
     <actions>
         <group id="com.baiguiren.tools.branch.SwitchBranchActionGroup" class="com.baiguiren.tools.branch.SwitchBranchActionGroup" popup="true"
                text="Switch Branch" description="Switch branch">
